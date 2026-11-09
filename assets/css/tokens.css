@@ -1,0 +1,160 @@
+/* ==========================================================================
+   Design tokens — Relatório Instagram
+   --------------------------------------------------------------------------
+   Este é o ÚNICO arquivo que precisa mudar para aplicar a identidade visual
+   da ferramenta onde o relatório for integrado (fonte, accent, superfícies).
+   As cores de séries (--igr-series-*) e a rampa sequencial (--igr-seq-*) são uma
+   paleta validada para daltonismo (CVD) — se trocar, revalide.
+   ========================================================================== */
+
+:root {
+
+  /* Tipografia */
+  --igr-font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Superfícies */
+  --igr-page: #f6f5f2;
+  --igr-surface-1: #fcfcfb;          /* cards / superfície dos gráficos */
+  --igr-surface-2: #f1f0ec;          /* preenchimentos sutis, cabeçalho de tabela */
+  --igr-surface-3: #e8e7e1;
+
+  /* Tinta (texto) */
+  --igr-text-primary: #0b0b0b;
+  --igr-text-secondary: #52514e;
+  --igr-text-muted: #6f6e69;
+  --igr-axis-text: #898781;
+
+  /* Linhas */
+  --igr-grid: #e1e0d9;
+  --igr-axis: #c3c2b7;
+  --igr-border: rgba(11, 11, 11, 0.10);
+  --igr-border-strong: rgba(11, 11, 11, 0.18);
+
+  /* Marca / interface (troque pelos tokens da ferramenta) */
+  --igr-accent: #1c5cab;
+  --igr-accent-hover: #184f95;
+  --igr-accent-ink: #ffffff;
+  --igr-accent-soft: rgba(42, 120, 214, 0.10);
+  --igr-focus-ring: #2a78d6;
+
+  /* Texto de variação (delta) */
+  --igr-delta-up: #006300;
+  --igr-delta-down: #b42323;
+
+  /* Status (reservado — nunca usar como cor de série) */
+  --igr-status-good: #0ca30c;
+  --igr-status-warning: #fab219;
+  --igr-status-serious: #ec835a;
+  --igr-status-critical: #d03b3b;
+
+  /* Paleta categórica (ordem fixa — não reordenar) */
+  --igr-series-1: #2a78d6;  /* azul     — Reels / Homens        */
+  --igr-series-2: #eb6834;  /* laranja  — Carrosséis / Mulheres */
+  --igr-series-3: #1baf7a;  /* água     — Imagens               */
+  --igr-series-4: #eda100;  /* amarelo  — Vídeos                */
+  --igr-series-5: #e87ba4;  /* magenta  — Stories               */
+  --igr-series-6: #008300;  /* verde    — Outros                */
+  --igr-series-7: #4a3aa7;
+  --igr-series-8: #e34948;
+
+  /* Rampa sequencial (magnitude — heatmap). 1 = quase zero, 6 = máximo */
+  --igr-seq-0: #f1f0ec;     /* célula vazia */
+  --igr-seq-1: #cde2fb;
+  --igr-seq-2: #9ec5f4;
+  --igr-seq-3: #6da7ec;
+  --igr-seq-4: #3987e5;
+  --igr-seq-5: #256abf;
+  --igr-seq-6: #184f95;
+
+  /* Forma */
+  --igr-radius-lg: 16px;
+  --igr-radius: 12px;
+  --igr-radius-sm: 8px;
+  --igr-shadow: 0 1px 2px rgba(11, 11, 11, 0.04), 0 4px 16px rgba(11, 11, 11, 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-igr-theme="light"])) {
+    --igr-page: #0d0d0d;
+    --igr-surface-1: #1a1a19;
+    --igr-surface-2: #232321;
+    --igr-surface-3: #2c2c2a;
+    --igr-text-primary: #ffffff;
+    --igr-text-secondary: #c3c2b7;
+    --igr-text-muted: #a3a29b;
+    --igr-axis-text: #898781;
+    --igr-grid: #2c2c2a;
+    --igr-axis: #383835;
+    --igr-border: rgba(255, 255, 255, 0.10);
+    --igr-border-strong: rgba(255, 255, 255, 0.18);
+    --igr-accent: #5598e7;
+    --igr-accent-hover: #6da7ec;
+    --igr-accent-ink: #0b0b0b;
+    --igr-accent-soft: rgba(85, 152, 231, 0.14);
+    --igr-focus-ring: #5598e7;
+    --igr-delta-up: #0ca30c;
+    --igr-delta-down: #e66767;
+    --igr-series-1: #3987e5;
+    --igr-series-2: #d95926;
+    --igr-series-3: #199e70;
+    --igr-series-4: #c98500;
+    --igr-series-5: #d55181;
+    --igr-series-6: #008300;
+    --igr-series-7: #9085e9;
+    --igr-series-8: #e66767;
+    --igr-seq-0: #232321;
+    --igr-seq-1: #0d366b;
+    --igr-seq-2: #104281;
+    --igr-seq-3: #1c5cab;
+    --igr-seq-4: #2a78d6;
+    --igr-seq-5: #5598e7;
+    --igr-seq-6: #9ec5f4;
+    --igr-shadow: none;
+  }
+}
+
+:root[data-igr-theme="dark"] {
+  --igr-page: #0d0d0d;
+  --igr-surface-1: #1a1a19;
+  --igr-surface-2: #232321;
+  --igr-surface-3: #2c2c2a;
+  --igr-text-primary: #ffffff;
+  --igr-text-secondary: #c3c2b7;
+  --igr-text-muted: #a3a29b;
+  --igr-axis-text: #898781;
+  --igr-grid: #2c2c2a;
+  --igr-axis: #383835;
+  --igr-border: rgba(255, 255, 255, 0.10);
+  --igr-border-strong: rgba(255, 255, 255, 0.18);
+  --igr-accent: #5598e7;
+  --igr-accent-hover: #6da7ec;
+  --igr-accent-ink: #0b0b0b;
+  --igr-accent-soft: rgba(85, 152, 231, 0.14);
+  --igr-focus-ring: #5598e7;
+  --igr-delta-up: #0ca30c;
+  --igr-delta-down: #e66767;
+  --igr-series-1: #3987e5;
+  --igr-series-2: #d95926;
+  --igr-series-3: #199e70;
+  --igr-series-4: #c98500;
+  --igr-series-5: #d55181;
+  --igr-series-6: #008300;
+  --igr-series-7: #9085e9;
+  --igr-series-8: #e66767;
+  --igr-seq-0: #232321;
+  --igr-seq-1: #0d366b;
+  --igr-seq-2: #104281;
+  --igr-seq-3: #1c5cab;
+  --igr-seq-4: #2a78d6;
+  --igr-seq-5: #5598e7;
+  --igr-seq-6: #9ec5f4;
+  --igr-shadow: none;
+}
+
+/* color-scheme (controles nativos, barras de rolagem) só no relatório e no tooltip.
+   No :root ele mudaria também a página da ferramenta onde o relatório está embutido. */
+.igr, .igr-tooltip { color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-igr-theme="light"])) :is(.igr, .igr-tooltip) { color-scheme: dark; }
+}
+:root[data-igr-theme="dark"] :is(.igr, .igr-tooltip) { color-scheme: dark; }

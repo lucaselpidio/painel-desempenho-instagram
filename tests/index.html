@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Testes · Relatório Instagram</title>
+  <style>
+    body { margin: 0; padding: 24px; font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color: #0b0b0b; background: #f6f5f2; }
+    h1 { font-size: 22px; margin: 0 0 4px; }
+    p { margin: 0 0 16px; color: #52514e; }
+    #resumo { font-size: 16px; font-weight: 700; color: #0b0b0b; }
+    #resumo.ok { color: #006300; }
+    #resumo.falha { color: #b42323; }
+    table { border-collapse: collapse; width: 100%; max-width: 1100px; background: #fff; }
+    th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid #e1e0d9; vertical-align: top; }
+    th { background: #f1f0ec; font-size: 12px; }
+    td.st { width: 64px; font-weight: 700; }
+    tr.ok td.st { color: #006300; }
+    tr.falha td.st { color: #b42323; }
+    tr.grupo td { background: #f1f0ec; font-weight: 700; }
+    td.det { color: #52514e; font-size: 12px; overflow-wrap: anywhere; }
+    #palco { position: absolute; left: -10000px; top: 0; height: 1400px; border: 0; }
+  </style>
+</head>
+<body>
+  <h1>Testes do relatório</h1>
+  <p>Cada cenário abre o <code>index.html</code> real num iframe e usa os exports fictícios de <code>tests/fixtures</code>.
+     Precisa ser servido por HTTP (veja o README). Leva alguns segundos.</p>
+  <p id="resumo">Rodando…</p>
+  <table>
+    <thead><tr><th>Resultado</th><th>Verificação</th><th>Detalhe</th></tr></thead>
+    <tbody id="resultados"></tbody>
+  </table>
+  <iframe id="palco" title="Relatório em teste"></iframe>
+  <script src="testes.js"></script>
+</body>
+</html>

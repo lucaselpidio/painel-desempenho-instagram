@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatório Instagram</title>
+  <meta name="description" content="Relatório de desempenho do Instagram a partir dos exports do Meta Business Suite.">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body>
+
+<!-- Raiz do relatório. Para embutir em outra página, copie este bloco inteiro
+     (mais os <link> e <script>). data-igr-autoinit="false" desliga a
+     inicialização automática — chame IGR.app.init(el) manualmente.
+     data-igr-owner="usuario" define a dona da conta (ex.: data-igr-owner="clara.nutri.demo");
+     sem ele, o relatório escolhe a conta com mais posts e mostra o seletor "Dona da conta". -->
+<div class="igr" data-igr-root>
+
+  <header class="igr-header">
+    <div class="igr-header-text">
+      <p class="igr-eyebrow">Relatório de desempenho · Instagram</p>
+      <h1 id="igr-title" class="igr-title">Desempenho no Instagram</h1>
+      <p id="igr-subtitle" class="igr-subtitle">Carregue os exports do Meta Business Suite para gerar o relatório.</p>
+    </div>
+    <div class="igr-header-actions">
+      <button type="button" class="igr-btn is-primary" data-igr-upload>Carregar exports</button>
+      <label class="igr-field igr-hub-client" id="igr-hub-client" hidden>
+        <span class="igr-field-label">Nome da cliente no Hub</span>
+        <input type="text" class="igr-input" id="igr-hub-cliente" autocomplete="off" spellcheck="false" required
+               title="Nome exato da cliente no Hub de Relatórios (nome da conta ou da titular), ou o id da conta. Fica guardado para este @.">
+      </label>
+      <button type="button" class="igr-btn" id="igr-print">Exportar PDF</button>
+      <button type="button" class="igr-btn is-icon" id="igr-theme" aria-label="Alternar tema claro/escuro" title="Alternar tema">◐</button>
+      <input type="file" id="igr-file-input" accept=".csv,text/csv" multiple hidden>
+    </div>
+  </header>
+
+  <div id="igr-files" class="igr-files" hidden></div>
+  <div id="igr-alert" class="igr-alert" role="alert" hidden></div>
+
+  <!-- Estado vazio -->
+  <section id="igr-empty" class="igr-empty">
+    <div class="igr-drop">
+      <div class="igr-drop-icon" aria-hidden="true">⇪</div>
+      <h2>Arraste os arquivos CSV aqui</h2>
+      <p>ou <button type="button" class="igr-link-btn" data-igr-upload>selecione no computador</button>. Pode enviar vários de uma vez — o tipo de cada arquivo é detectado automaticamente.</p>
+      <div class="igr-drop-types">
+        <div>
+          <strong>Conteúdos (feed e stories)</strong>
+          <span>Meta Business Suite → Insights → Conteúdo → Exportar dados. Envie o export de posts e o de stories, se tiver. Ex.: <code>Jul-03-2026_Sep-30-2026_….csv</code></span>
+        </div>
+        <div>
+          <strong>Público</strong>
+          <span>Meta Business Suite → Insights → Público → Exportar. Ex.: <code>Público.csv</code></span>
+        </div>
+      </div>
+      <p class="igr-drop-note">Os arquivos são processados no seu navegador e não são enviados a nenhum servidor.</p>
+    </div>
+  </section>
+
+  <!-- Relatório -->
+  <div id="igr-report" hidden>
+    <div id="igr-filters" class="igr-filters" aria-label="Filtros"></div>
+
+    <nav class="igr-nav" aria-label="Seções do relatório">
+      <a href="#igr-sec-summary">Resumo</a>
+      <a href="#igr-sec-content">O que viram</a>
+      <a href="#igr-sec-formats">Formatos</a>
+      <a href="#igr-sec-themes">Temas</a>
+      <a href="#igr-sec-calendar">Calendário</a>
+      <a href="#igr-sec-stories" id="igr-nav-stories" hidden>Stories</a>
+      <a href="#igr-sec-audience">Público</a>
+      <a href="#igr-sec-collabs" id="igr-nav-collabs" hidden>Colaborações</a>
+      <a href="#igr-sec-posts">Base completa</a>
+      <a href="#igr-sec-method">Metodologia</a>
+    </nav>
+
+    <section id="igr-sec-summary" class="igr-section">
+      <header class="igr-section-head">
+        <span class="igr-section-num">01</span>
+        <div><h2>Resumo executivo</h2><p>Principais números do período, do feed e dos stories, e leituras automáticas.</p></div>
+      </header>
+      <div class="igr-grid"></div>
+    </section>
+
+    <section id="igr-sec-content" class="igr-section">
+      <header class="igr-section-head">
+        <span class="igr-section-num">02</span>
+        <div><h2>O que as pessoas viram no feed</h2><p>Quais posts do feed chegaram mais longe, como as visualizações evoluíram e com que profundidade foram consumidos.</p></div>
+      </header>
+      <div class="igr-grid"></div>
+    </section>
+
+    <section id="igr-sec-formats" class="igr-section">
+      <header class="igr-section-head">
+        <span class="igr-section-num">03</span>
+        <div><h2>Formatos e interações no feed</h2><p>Qual formato do feed entrega mais e que tipo de reação os posts provocam.</p></div>
+      </header>
+      <div class="igr-grid"></div>
+    </section>
+
+    <section id="igr-sec-themes" class="igr-section">
+      <header class="igr-section-head">
+        <span class="igr-section-num">04</span>
+        <div><h2>Temas e características</h2><p>Termos, hashtags, duração e legenda dos posts do feed que performam melhor.</p></div>
+      </header>
+      <div class="igr-grid"></div>
+    </section>
+
+    <section id="igr-sec-calendar" class="igr-section">
+      <header class="igr-section-head">
+        <span class="igr-section-num">05</span>
+        <div><h2>Calendário do feed</h2><p>Quando publicar no feed e com que consistência. O calendário dos stories está na seção Stories.</p></div>
+      </header>
+      <div class="igr-grid"></div>
+    </section>
+
+    <section id="igr-sec-stories" class="igr-section" hidden>
+      <header class="igr-section-head">
+        <span class="igr-section-num">06</span>
+        <div><h2>Stories</h2><p>Desempenho dos stories, analisado à parte: têm métricas e dinâmica próprias e ficam fora dos números do feed.</p></div>
+      </header>
+      <div class="igr-grid"></div>
+    </section>
+
+    <section id="igr-sec-audience" class="igr-section">
+      <header class="igr-section-head">
+        <span class="igr-section-num">07</span>
+        <div><h2>Público</h2><p>Quem segue o perfil, de onde é e como a base cresceu.</p></div>
+      </header>
+      <div class="igr-grid"></div>
+    </section>
+
+    <section id="igr-sec-collabs" class="igr-section" hidden>
+      <header class="igr-section-head">
+        <span class="igr-section-num">08</span>
+        <div><h2>Colaborações</h2><p>Posts de outras contas em que a dona do perfil entrou como colaboradora. Ficam fora dos totais do relatório.</p></div>
+      </header>
+      <div class="igr-grid"></div>
+    </section>
+
+    <section id="igr-sec-posts" class="igr-section">
+      <header class="igr-section-head">
+        <span class="igr-section-num">09</span>
+        <div><h2>Base completa</h2><p>Todos os posts do feed com métricas e taxas calculadas (os stories têm tabela própria na seção Stories).</p></div>
+      </header>
+      <div class="igr-grid"></div>
+    </section>
+
+    <section id="igr-sec-method" class="igr-section">
+      <header class="igr-section-head">
+        <span class="igr-section-num">10</span>
+        <div><h2>Metodologia e glossário</h2><p>Como cada número é calculado.</p></div>
+      </header>
+      <div class="igr-card span-full">
+        <dl class="igr-glossary">
+          <div><dt>Visualizações</dt><dd>Número de vezes que o conteúdo foi exibido (inclui repetições da mesma pessoa). É a métrica principal que o Meta adotou no lugar de impressões e reproduções.</dd></div>
+          <div><dt>Alcance</dt><dd>Contas únicas que viram cada conteúdo. O “alcance somado” soma o alcance de cada post — a mesma pessoa pode ser contada em mais de um post, então não equivale a contas únicas no período.</dd></div>
+          <div><dt>Interações</dt><dd>Curtidas + comentários + compartilhamentos + salvamentos.</dd></div>
+          <div><dt>Taxa de engajamento</dt><dd>Interações ÷ alcance. No total do período é ponderada (soma das interações ÷ soma do alcance); por post é calculada individualmente.</dd></div>
+          <div><dt>Visualizações por conta</dt><dd>Visualizações ÷ alcance. Indica revisualização: acima de 1× significa que parte do público viu o conteúdo mais de uma vez.</dd></div>
+          <div><dt>Seguidores (via posts e stories)</dt><dd>Contas que começaram a seguir o perfil a partir de um post ou story (coluna “Seguimentos” do export de conteúdos). “Novos seguidores” vem do export de Público e inclui todas as origens.</dd></div>
+          <div><dt>“× a mediana”</dt><dd>Visualizações do post ÷ mediana de visualizações do período. Usa mediana (e não média) para não ser distorcida por um único viral.</dd></div>
+          <div><dt>Período anterior</dt><dd>Ao filtrar um período (ex.: últimos 30 dias), as variações comparam com o mesmo número de dias imediatamente anterior — desde que existam dados carregados para ele.</dd></div>
+          <div><dt>Público</dt><dd>Idade, gênero, cidades e países são um retrato dos seguidores na data do export, em % do total, e não variam com o filtro de período.</dd></div>
+          <div><dt>Seguidores do perfil</dt><dd>Os exports do Meta não trazem o total de seguidores, só os ganhos por dia. O total vem do número informado a partir do perfil, na data indicada. O crescimento no período é uma estimativa: novos seguidores ÷ (total − novos seguidores), sem descontar quem deixou de seguir.</dd></div>
+          <div><dt>Evolução (gráficos de linha)</dt><dd>Os exports trazem o total de cada publicação, não o desempenho dia a dia. Por isso, nas métricas de posts e stories, cada ponto soma as publicações feitas naquele dia (ou nos 7 dias do bloco, na visão semanal). Novos seguidores e Seguidores são diários de verdade. A linha cinza é o período anterior, alinhado dia 1 com dia 1.</dd></div>
+          <div><dt>Visualizações totais</dt><dd>Soma das visualizações do feed e dos stories, mostrada no Resumo quando há stories. A soma é válida porque o Meta usa a mesma definição de visualização nos dois canais. Alcance e interações não são somados entre os canais, porque têm definições diferentes ou contam a mesma pessoa duas vezes.</dd></div>
+          <div><dt>Feed e Stories</dt><dd>Reels, carrosséis, imagens e vídeos formam o “feed”, base das médias, taxas e comparações do relatório (a única soma entre os canais é a de visualizações totais). Stories são analisados em seção própria, porque têm métricas diferentes (respostas, figurinhas, navegação), duram 24h e são publicados em volume muito maior.</dd></div>
+          <div><dt>Métricas de stories</dt><dd><strong>Respostas</strong>: mensagens enviadas a partir do story. <strong>Toques em figurinhas</strong>: toques em enquetes, links, menções, localização e demais figurinhas. <strong>Navegação</strong>: soma das ações de avançar, voltar, sair e ir para o próximo story, como o Meta reporta.</dd></div>
+          <div><dt>Colaborações (collabs)</dt><dd>Posts criados por outra conta em que a dona do perfil aceitou ser colaboradora. Eles vêm no export com o @ de quem criou e aparecem em uma seção própria, fora dos totais, porque as métricas de uma collab são compartilhadas entre as contas. Collabs criadas pela própria dona não são identificáveis no export e contam como posts próprios.</dd></div>
+          <div><dt>Vários exports</dt><dd>Arquivos são somados. Se o mesmo post aparecer em mais de um export, vale a versão com mais visualizações (a mais recente). Na série de seguidores, vale o export mais recente para cada dia.</dd></div>
+          <div><dt>Leituras automáticas</dt><dd>São regras determinísticas sobre os dados filtrados (comparações, picos, concentração). Apontam hipóteses — correlação, não causa.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <footer class="igr-footer">
+      <span id="igr-generated"></span>
+    </footer>
+  </div>
+
+  <div class="igr-drop-overlay" aria-hidden="true"><div>Solte os arquivos CSV para atualizar o relatório</div></div>
+  <div id="igr-toast" class="igr-toast" role="status" aria-live="polite"></div>
+</div>
+
+<script src="assets/js/parsers.js"></script>
+<script src="assets/js/metrics.js"></script>
+<script src="assets/js/insights.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/hub-config.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="demo/dados-demo.js"></script>
+<script src="demo/demo.js"></script>
+</body>
+</html>

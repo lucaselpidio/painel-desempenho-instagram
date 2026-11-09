@@ -1,0 +1,17 @@
+# Segredo do servidor de envio: fica só na variável de ambiente
+.env
+.env.*
+*.key
+*.pem
+
+# PDFs gerados
+*.pdf
+
+# Node / sistema / editor
+node_modules/
+npm-debug.log*
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
