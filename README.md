@@ -39,7 +39,7 @@ Todo gráfico tem **Ver tabela**, e há três gráficos de **Evolução** (resum
 |---|---|
 | ![Evolução das visualizações com o período anterior](docs/capturas/evolucao.png) | ![Desempenho médio por formato](docs/capturas/formatos.png) |
 | ![Mapa de calor de dia e horário de publicação](docs/capturas/calendario.png) | ![Público: seguidores, idade e gênero, cidades](docs/capturas/publico.png) |
-| ![Seção de stories no tema escuro](docs/capturas/stories-escuro.png) | ![Versão para celular](docs/capturas/celular.png) |
+| ![Seção de stories: indicadores, stories por dia e respostas](docs/capturas/stories.png) | ![Visão geral de feed + stories no celular](docs/capturas/celular.png) |
 
 ## Regras de dados que fazem diferença
 
